@@ -49,7 +49,18 @@
                             <div class="o_address_format">
                                 <field name="street" placeholder="Street..." class="o_address_street"/>
                                 <field name="street2" placeholder="Street 2 ..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <!-- options='{"no_open": True}' permet d'empêcher de naviger vers le modèle cible via la petite flèche -->
+                                <!-- options='{"no_create": True}' permet d'empêcher la création de nouvelles instances -->
+                                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
                             </div>
+                        </group>
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="mobile" widget="phone"/>
+                            <field name="email" widget="email" context="{'gravatar_image': True}"/>
                         </group>
                     </group>
                 </sheet>
