@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 class Hostel(models.Model):
     _name = 'hostel.hostel'
@@ -18,3 +18,20 @@ class Hostel(models.Model):
     # ===================
 
     state_id = fields.Many2one(string="State", comodel_name="res.country.state")
+
+    # =========
+    # Overrides
+    # =========
+
+    @api.depends('name', 'hostel_code')
+    def _compute_display_name(self):
+        """
+        Override de la méthode pour modifier le champ 'display_name' du modèle.
+        """
+        for record in self:
+            if record.name:
+                name = record.name
+                if record.hostel_code:
+                    name = f'{name} ({record.hostel_code})'
+
+            record.display_name = name
