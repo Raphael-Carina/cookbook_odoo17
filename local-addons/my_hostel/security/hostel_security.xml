@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- On créer une catégorie "Hostel Management" à laquelle on va pouvoir ensuite rattacher les groupes d'utilisateurs -->
+    <record id="module_category_hostel" model="ir.module.category">
+        <field name="name">Hostel Management</field>
+        <field name="sequence">31</field>
+    </record>
+
+    <!-- On créer un groupe d'utilisateur "Manager" auxquels on donnera tous les droits sur le modèle hostel.hostel -->
+    <record id="group_hostel_manager" model="res.groups">
+        <field name="name">Hostel Manager</field>
+        <field name="category_id" ref="module_category_hostel"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <!-- On créer un groupe d'utilisateur auxquels on donnera uniquement les droits en lecture sur le modèle hostel.hostel -->
+    <record id="group_hostel_user" model="res.groups">
+        <field name="name">Hostel User</field>
+        <field name="category_id" ref="module_category_hostel"/>
+    </record>
+
+</odoo>
