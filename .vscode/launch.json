@@ -4,23 +4,26 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",
-            "program": "C:\\Users\\Raphaël\\dev\\odoo17\\odoo\\odoo-bin",
+            "program": "/Users/raphael/dev/odoo17/odoo/odoo-bin",
             "console": "integratedTerminal",
             "args": [
-                "--config=C:\\Users\\Raphaël\\Desktop\\cookbook_odoo17\\odoo.conf",
-                "--addons-path=C:\\Users\\Raphaël\\dev\\odoo17\\odoo\\addons,C:\\Users\\Raphaël\\dev\\odoo17\\enterprise,local-addons",
+                "--config=/Users/raphael/Desktop/cookbook_odoo17/odoo.conf",
+                "--addons-path=/Users/raphael/dev/odoo17/odoo/addons,/Users/raphael/dev/odoo17/enterprise,/Users/raphael/Desktop/cookbook_odoo17/local-addons",
                 "--database=cookbook",
                 "--update=my_hostel",
+
+                // Utile à la première initialisation de la base de donnée
+                //"--init=cookbook",
+
                 "--dev=xml",
                 "--log-level=test",
             ],
-            "cwd":"C:\\Users\\Raphaël\\Desktop\\cookbook_odoo17",
-            "envFile":"C:\\Users\\Raphaël\\Desktop\\cookbook_odoo17\\.env",
-        }
+            "cwd":"/Users/raphael/Desktop/cookbook_odoo17",
+            "envFile":"/Users/raphael/Desktop/cookbook_odoo17/.env",
+        },
     ]
 }

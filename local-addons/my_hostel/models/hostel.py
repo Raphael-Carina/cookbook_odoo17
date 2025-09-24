@@ -40,4 +40,9 @@ class Hostel(models.Model):
                 if record.hostel_code:
                     name = f'{name} ({record.hostel_code})'
 
-            record.display_name = name
+                record.display_name = name
+            
+            # Si l'on ne gère pas le cas où name n'existe pas, on aura une erreur en essayant de créer une nouvelle instance puisque la méthode ne pourra pas assigner de display_name à l'instance
+            else:
+                record.display_name = False
+
