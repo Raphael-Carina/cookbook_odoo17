@@ -46,3 +46,4 @@ class Hostel(models.Model):
             else:
                 record.display_name = False
 
+# test
