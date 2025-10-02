@@ -17,6 +17,13 @@ class Hostel(models.Model):
     phone = fields.Char(string="Phone", required=True)
     mobile = fields.Char(string="Mobile", required=True)
     email = fields.Char(string="Email")
+    hostel_floors = fields.Integer(string="Total Floors")
+    image = fields.Binary(string="Hostel Image")
+    active = fields.Boolean(string="Active", default=True, help="Activate/Deactivate hosteel record")
+    type = fields.Selection(selection=[("male", "Boys"), ("female", "Girls"), ("common", "Common")], help="Type of Hostel", required=True, default="common")
+    other_info = fields.Text(string="Other Information", help="Enter more information")
+    description = fields.Html(string="Description")
+    hostel_rating = fields.Float(string="Hostel Average Rating", digits=(14, 4))
 
     # ===================
     # Champs relationnels
