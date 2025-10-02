@@ -27,6 +27,7 @@
                     <group>
                         <field name="student_firstname"/>
                         <field name="student_lastname"/>
+                        <field name="room_id"/>
                         <field name="gender"/>
                     </group>
                 </group>
@@ -42,6 +43,7 @@
             <tree>
                 <field name="student_lastname"/>
                 <field name="student_firstname"/>
+                <field name="room_id"/>
                 <field name="gender" optional="hide"/>
             </tree>
         </field>
