@@ -46,3 +46,14 @@ class HostelRoom(models.Model):
         comodel_name='hostel.hostel',
         help="Name of the hostel",
     )
+
+    # ==============================
+    # Champs en lien avec l'étudiant
+    # ==============================
+
+    student_ids = fields.One2many(
+        string="Students",
+        comodel_name='hostel.student',
+        inverse_name='room_id',
+        help="Enter students"
+    )

@@ -33,6 +33,9 @@
                         <field name="currency_id"/>
                     </group>
                 </group>
+                <group string="Students">
+                    <field name="student_ids"/>
+                </group>
             </form>
         </field>
     </record>

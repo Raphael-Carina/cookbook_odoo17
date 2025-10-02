@@ -32,5 +32,6 @@ class HostelStudent(models.Model):
 
     room_id = fields.Many2one(
         string="Room",
-        comodel_name='hostel.room'
+        comodel_name='hostel.room',
+        help="Select hostel room",
     )
