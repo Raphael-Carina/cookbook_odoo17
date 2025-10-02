@@ -14,6 +14,7 @@
             "data/data.xml",
             "views/hostel.xml",
             "views/room_views.xml",
+            "views/student_views.xml",
         ],
 
         'assets': {

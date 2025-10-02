@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- Action qui "ouvre" le modèle hostel.student -->
+    <record id="action_hostel_student" model="ir.actions.act_window">
+        <field name="name">Hostel Student</field>
+        <field name="res_model">hostel.student</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="or_view_nocontent_create">
+                Create Hostel Student.
+            </p>
+        </field>
+    </record>
+
+    <!-- Ajout d'un menuitem pour voir apparaitre le 'bouton' dans la barre latérale supérieure du module -->
+    <menuitem id="hostel_student_type_menu" name="Hostel Student" parent="hostel_main_menu" action="action_hostel_student"/>
+
+    <!-- Vue form pour le modèle hostel.student -->
+    <record id="hostel_student_form_view" model="ir.ui.view">
+        <field name="name">hostel.student.form.view</field>
+        <field name="model">hostel.student</field>
+        <field name="arch" type="xml">
+            <form string="Hostel Student">
+                <group>
+                    <group>
+                        <field name="student_firstname"/>
+                        <field name="student_lastname"/>
+                        <field name="gender"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue list pour hostel.student -->
+    <record id="hostel_student_list_view" model="ir.ui.view">
+        <field name="name">hostel.student.list.view</field>
+        <field name="model">hostel.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student_lastname"/>
+                <field name="student_firstname"/>
+                <field name="gender" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
