@@ -27,6 +27,7 @@
                     <group>
                         <field name="name"/>
                         <field name="room_no"/>
+                        <field name="hostel_id"/>
                         <field name="floor_no"/>
                         <field name="rent_amount"/>
                         <field name="currency_id"/>

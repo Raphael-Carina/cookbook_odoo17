@@ -29,3 +29,20 @@ class HostelRoom(models.Model):
         help="Enter rent amount per month",
         currency_field='currency_id',
     )
+
+    # ===========================
+    # Champs en lien avec l'hotel
+    # ===========================
+
+    """
+    Une chambre ne peut avoir qu'un hotel (et un hotel plusieurs chambres) donc :
+
+    room --> hostel (Many2one)
+    hostel --> room (One2many)
+    """
+
+    hostel_id = fields.Many2one(
+        string="Hostel",
+        comodel_name='hostel.hostel',
+        help="Name of the hostel",
+    )
