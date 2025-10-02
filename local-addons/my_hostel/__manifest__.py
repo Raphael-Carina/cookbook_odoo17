@@ -13,6 +13,7 @@
             "security/ir.model.access.csv",
             "data/data.xml",
             "views/hostel.xml",
+            "views/room_views.xml",
         ],
 
         'assets': {

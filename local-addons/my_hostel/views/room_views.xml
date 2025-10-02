@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- Action qui "ouvre" le modèle hostel.room -->
+    <record id="action_hostel_room" model="ir.actions.act_window">
+        <field name="name">Hostel Room</field>
+        <field name="res_model">hostel.room</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="or_view_nocontent_create">
+                Create Hostel Room.
+            </p>
+        </field>
+    </record>
+
+    <!-- On créer le menuitem de la barre latéral supérieure pour avoir accès au modèle -->
+    <menuitem id="hostel_room_type_menu" name="Hostel Room" parent="hostel_main_menu" action="action_hostel_room"/>
+
+    <!-- Vue form pour le modèle hostel.room -->
+    <record id="hostel_room_form_view" model="ir.ui.view">
+        <field name="name">hostel.room.form.view</field>
+        <field name="model">hostel.room</field>
+        <field name="arch" type="xml">
+            <form string="Hostel Room">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="room_no"/>
+                        <field name="floor_no"/>
+                        <field name="rent_amount"/>
+                        <field name="currency_id"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>
