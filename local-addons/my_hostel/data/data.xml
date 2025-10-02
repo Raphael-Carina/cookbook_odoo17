@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- On défini une précision décimale, que l'on peut retrouver dans Odoo dans :
+    Paramètres / Technique / Structure de la BDD / Précision Décimal .
+    On peut utiliser ensuite cette précision via l'argument 'digits' dans la définition des champs d'un modèle,
+    comme ce qui est fait avec le champ 'rating_value' de hostel.hostel . -->
+    <record forcecreate="True" id="decimal_point" model="decimal.precision">
+        <field name="name">Rating Value</field>
+        <field name="digits">3</field>
+    </record>
+
+</odoo>

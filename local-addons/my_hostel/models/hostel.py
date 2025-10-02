@@ -23,7 +23,10 @@ class Hostel(models.Model):
     type = fields.Selection(selection=[("male", "Boys"), ("female", "Girls"), ("common", "Common")], help="Type of Hostel", required=True, default="common")
     other_info = fields.Text(string="Other Information", help="Enter more information")
     description = fields.Html(string="Description")
-    hostel_rating = fields.Float(string="Hostel Average Rating", digits=(14, 4))
+    hostel_rating = fields.Float(string="Hostel Average Rating",
+                                # digits=(3, 1),
+                                digits='Rating Value'
+                                )
 
     # ===================
     # Champs relationnels
