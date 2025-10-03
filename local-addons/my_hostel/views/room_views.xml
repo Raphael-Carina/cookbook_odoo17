@@ -36,6 +36,9 @@
                 <group string="Students">
                     <field name="student_ids"/>
                 </group>
+                <group string="Amenities">
+                    <field name="hostel_amenities_ids"/>
+                </group>
             </form>
         </field>
     </record>

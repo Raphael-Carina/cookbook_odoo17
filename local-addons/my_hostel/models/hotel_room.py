@@ -57,3 +57,17 @@ class HostelRoom(models.Model):
         inverse_name='room_id',
         help="Enter students"
     )
+
+    # ===================================
+    # Champs en lien avec les équipements
+    # ===================================
+
+    hostel_amenities_ids = fields.Many2many(
+        comodel_name='hostel.amenities',       # le modèle lié
+        relation="hostel_room_amenities_rel",  # le nom de la table qui stocke la relation en BDD
+        column1="room_id",                     # le nom de la colonne qui stocke les enregistrements de ce modèle
+        column2="amenity_id",                  # le nom de la colonne qui stocke les enregistrements du modèle lié
+        string="Amenities",
+        domain="[('active', '=', True)]",      # le domain qui permet de ne séléctionner que des aménagements actifs
+        help="Select hostel room amenities",
+    )
