@@ -62,6 +62,10 @@ Concrètement, cette structure de modèle hiérarchique avec _parent_store = Tru
 où l'on fait beaucoup de recherches dessus. 
 
 Par contre, elle ne convient pas très bien dans un contexte où l'on ferait souvent des modifications sur les catégories.
+
+L'utilisation de _parent_store = True génère automatiquement un parent_path qui est très efficace pour les recherches utilisant child_of. 
+Par contre, elle rends les requêtes create/write/delete plus longue car ce parent_path (qui est un peu comme un arbre généalogique des enregistrements du modèle) doit se remettre à jour aussi.
+Si on travail avec un modèle où il y a beaucoup de modifications (create/write/delete), il est préférable de ne pas utiliser _parent_path mais juste parent_id et child_ids 
     """
 
     # ==============
