@@ -1,8 +1,33 @@
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 class HostelRoom(models.Model):
     _name = "hostel.room"
     _description = "Model used to represent a room in an hostel."
+
+    # Contraintes SQL
+    """
+Attention : si on ajoute une contrainte SQL alors qu'il existe déjà des enregistrements en base qui violent la contrainte,
+alors la contrainte ne s'appliquera pas du tout et un message d'erreur apparaitra dans les logs.
+    """
+
+    _sql_constraints = [
+        ('room_no_unique', 'UNIQUE(room_no)', "An hostel N° shoud be unique.")
+    ]
+
+    # Contraintes Python
+    """
+On indique dans le décorateur @api.constrains les champs qui sont impliqués dans la contraintes.
+La contrainte est alors automatiquement revérifiée lorsque l'un des champs indiqués change.
+    """
+
+    @api.constrains('rent_amount')
+    def _check_rent_amount_is_positive(self):
+        """
+        Contrainte Python pour vérifier que le montant du loyer est bien une valeur positive.
+        """
+        if self.rent_amount < 0:
+            raise ValidationError("Error. The rent amount should be a positive value.")
 
     # ===============
     # Champs basiques
