@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action qui "ouvre" le modèle hostel.category -->
+    <record id="action_hostel_category" model="ir.actions.act_window">
+        <field name="name">Hostel Categories</field>
+        <field name="res_model">hostel.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="or_view_nocontent_create">
+                Create Hostel Category.
+            </p>
+        </field>
+    </record>
+
+    <!-- On créer un menu pour le modèle hostel.category pour le voir dans la barre latérale supérieure de l'app Hostel -->
+    <menuitem id="hostel_category_type_menu" name="Hostel Category" parent="hostel_main_menu" action="my_hostel.action_hostel_category"/>
+
+</odoo>

@@ -34,6 +34,7 @@ class Hostel(models.Model):
 
     state_id = fields.Many2one(string="State", comodel_name="res.country.state")
     country_id = fields.Many2one(string="Country", comodel_name="res.country")
+    category_id = fields.Many2one(string="Category", comodel_name="hostel.category")
 
     # =========
     # Overrides
