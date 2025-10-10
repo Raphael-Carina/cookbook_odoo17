@@ -56,6 +56,12 @@ Cela signifie que l'arbre ressemble à quelque chose comme :
 
 En utilisant _parent_store = True, on rends les requêtes de recherches plus rapides (les recherches utilisant child_of), mais
 on rends les opérations d'écritures/modifications (write) un peu plus lente car l'arbre doit être modifié aussi.
+
+
+L'utilisation de _parent_store = True permet d'utiliser automatiquement la méthode _parent_store_update (odoo/odoo/models.py)
+qui détecte les récursions.
+Cette méthode est appelée AVANT les contraintes Python, c'est pourquoi notre méthode _check_hierarchy plus bas ne sert à rien concrètement.
+(On peut essayer de créer des enregistrements n'importe comment, on arrivera pas a voir apparaitre son message d'erreur).
 -----------------------------------------------------------------
 
 Concrètement, cette structure de modèle hiérarchique avec _parent_store = True est très efficace pour un modèle où nos catégories changent peu et 
