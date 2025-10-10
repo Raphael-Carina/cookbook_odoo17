@@ -35,6 +35,8 @@
                 </group>
                 <group string="Students">
                     <field name="student_ids"/>
+                    <field name="student_per_room"/>
+                    <field name="availability"/>
                 </group>
                 <group string="Amenities">
                     <field name="hostel_amenities_ids"/>

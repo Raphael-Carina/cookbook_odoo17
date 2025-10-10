@@ -72,15 +72,27 @@ La contrainte est alors automatiquement revérifiée lorsque l'un des champs ind
         help="Name of the hostel",
     )
 
-    # ==============================
-    # Champs en lien avec l'étudiant
-    # ==============================
+    # ==========================================================
+    # Champs en lien avec l'étudiant / les étudiants résidant(s)
+    # ==========================================================
 
     student_ids = fields.One2many(
         string="Students",
         comodel_name='hostel.student',
         inverse_name='room_id',
         help="Enter students"
+    )
+
+    student_per_room = fields.Integer(
+        string="Student per room",
+        required=True,
+        help="Student allocated per room",
+    )
+
+    availability = fields.Float(
+        string="Availability",
+        compute="_compute_check_availability",
+        help="Room availability in hostel",
     )
 
     # ===================================
@@ -96,3 +108,21 @@ La contrainte est alors automatiquement revérifiée lorsque l'un des champs ind
         domain="[('active', '=', True)]",      # le domain qui permet de ne séléctionner que des aménagements actifs
         help="Select hostel room amenities",
     )
+
+    # =================
+    # Méthodes computes
+    # =================
+
+    @api.depends('student_per_room', 'student_ids')
+    def _compute_check_availability(self):
+        """
+        Méthode qui donne une valeur au champ compute 'availability'.
+        Ce champ indique le nombre de place restante dans la chambre, en prenant en compte le nombre maximal et le nombre de résidants actuels.
+
+        Les champs indiqués dans le @api.depends() sont très utiles car ils permettent de définir par rapport à quels autres champ notre champ 'availabilty'
+        est calculé. Lorsque l'un d'en eux change, 'availability' est recalculé.
+
+        Un champ compute est readonly par défaut car l'utilisateur n'a a priori (sauf certains cas) pas à venir y définir une valeur lui même.
+        """
+        for record in self:
+            record.availability = record.student_per_room - len(record.student_ids.ids)
