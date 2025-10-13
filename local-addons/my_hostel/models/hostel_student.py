@@ -37,6 +37,73 @@ class HostelStudent(models.Model):
         help="Select hostel room",
     )
 
+    # ==============================================
+    # Champs relatifs à l'hostel (ex. champ related)
+    # ==============================================
+
+    """
+Les utilisateurs Odoo ne peuvent avoir accèsqu'aux champs qui appartiennent au modèle sur lequel ils se trouvent.
+Pour pouvoir avoir accès à des champs d'autres modèle, on peut utiliser les champs related.
+Il s'agit d'un type de champ particulier qui réfère à un autre champ d'un modèle différent.
+Pour créer un champ related, on doit spécifier l'argument 'related' au champ et donner le chemin vers le champ à afficher.
+Dans cet exemple, hostel_id est un champ related qui permet d'afficher sur le modèle hostel.student l'hostel de la room du student.
+
+--> les champs related sont en réalité des champs computes.
+
+Note :
+
+Attention aux N queries !
+Il est préférable de ne pas utiliser de champ related dans les méthodes create() ou write().
+
+Exemple avec les modèles sale.order et sale.order.line :
+
+
+-------
+
+class SaleOrder(models.Model):
+    _name = 'sale.order'
+    
+    partner_id = fields.Many2one('res.partner')
+    partner_name = fields.Char(related='partner_id.name')
+    order_line = fields.One2many('sale.order.line', 'order_id')
+
+----
+
+class SaleOrderLine(models.Model):
+    _name = 'sale.order.line'
+    
+    order_id = fields.Many2one('sale.order')
+    
+    # Champ related qui "remonte" vers sale.order
+    partner_id = fields.Many2one(related='order_id.partner_id', store=True)
+
+
+    @api.model
+    def create(self, vals):
+        line = super().create(vals)
+        
+        # ⚠️ PROBLÈME : Utilisation du champ related
+        if line.partner_id:  # Accès au champ related
+            # Faire quelque chose avec partner_id
+            self._do_something(line.partner_id)
+        
+        return line
+-------
+
+Le problème a lieu car Odoo optimise en retardant le calcul des champs related.
+Dons au moment de notre if line.partner_id, ce champ n'est pas encore calculé, donc il va faire une requête SQL.
+
+Si on créer 100 sale.order.line d'un coup, cela représente 100 requêtes SQL.
+
+Le mieux dans ces cas là c'est de passer directement par le champ du modèle parent : if line.order_id.partner_id !
+    """
+
+    hostel_id = fields.Many2one(
+        string="Hostel",
+        comodel_name='hostel.hostel',
+        related='room_id.hostel_id',
+    )
+
     # ========================================================================================
     # Champs relatifs à la date d'entrée/sorte et durée (ex. champ compute avec readony=False)
     # ========================================================================================
